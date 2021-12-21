@@ -3,7 +3,7 @@ function setup() {
   canvas.center();
   video = createCapture(VIDEO);
   video.hide();
-  classifier = ml5.imageclassifier('MobileNet', modelLoaded);
+  classifier = ml5.imageClassifier('MobileNet', modelLoaded);
 }
 function modelLoaded(){
   console.log('Mode Loaded');
@@ -24,9 +24,10 @@ function gotResult(error, results){
  var synth = window.speechSynthesis;
  speak_data = 'Object detected is - '+results[0].label;
  var utterThis = new SpeechSynthesisUtterance(speak_data);
+ synth.speak(utterThis);  
 
- document.getElementById("results_object_name").innerHTML = results[0].label;
- document.getElementById("results_object_accuracy").innerHTML = label[0].confidence.toFixed(3);
+ document.getElementById("result_object_name").innerHTML = results[0].label;
+ document.getElementById("result_object_accuracy").innerHTML = results[0].confidence.toFixed(3);
   }}
 }
 
